@@ -24,6 +24,8 @@ class HomeTableViewController: UITableViewController {
 
     @IBAction func onLogout(_ sender: UIBarButtonItem) {
         TwitterAPICaller.client?.logout()
+        // persist user logout
+        UserDefaults.standard.setValue(false, forKey: "userLoggedIn")
         // Go back to the home screen
         self.dismiss(animated: true, completion: nil)
     }
