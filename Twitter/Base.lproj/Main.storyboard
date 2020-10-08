@@ -9,25 +9,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="PhZ-Bs-kHN">
             <objects>
-                <viewController id="VrM-tN-wEa" sceneMemberID="viewController">
+                <viewController id="VrM-tN-wEa" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HT9-S2-MZf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ9-NO-XiG">
-                                <rect key="frame" x="127.5" y="306" width="120" height="55"/>
+                                <rect key="frame" x="87.5" y="306" width="200" height="55"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="Qcv-MD-XPp"/>
-                                    <constraint firstAttribute="width" constant="120" id="bjY-UK-Rjj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="bjY-UK-Rjj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="onLoginButton:" destination="VrM-tN-wEa" eventType="touchUpInside" id="ibj-NX-jis"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Wk-R4-GeO"/>
@@ -37,10 +39,58 @@
                             <constraint firstItem="BZ9-NO-XiG" firstAttribute="centerX" secondItem="HT9-S2-MZf" secondAttribute="centerX" id="aFj-bN-FnG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="WgW-2z-v2g" kind="presentation" identifier="loginToHome" id="Chg-E2-wqd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckf-Qo-U7W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="140.77961019490255"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="wi5-Dj-9LI">
+            <objects>
+                <tableViewController id="3da-bd-47b" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Bn-f7-Gjw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mTb-Yx-563">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mTb-Yx-563" id="OpF-20-kD5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3da-bd-47b" id="Pzl-a2-wie"/>
+                            <outlet property="delegate" destination="3da-bd-47b" id="MN1-iR-5n8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="F7p-jd-RcQ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1I6-1Q-jB8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2009" y="140"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CUq-aW-S1d">
+            <objects>
+                <navigationController id="WgW-2z-v2g" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1PM-NC-tky">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3da-bd-47b" kind="relationship" relationship="rootViewController" id="yJ2-Ci-sfw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C3t-PQ-68y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089" y="140"/>
         </scene>
     </scenes>
     <resources>
