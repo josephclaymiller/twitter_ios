@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ9-NO-XiG">
-                                <rect key="frame" x="87.5" y="306" width="200" height="55"/>
+                                <rect key="frame" x="87.5" y="406" width="200" height="55"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="bjY-UK-Rjj"/>
@@ -27,15 +27,27 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="28"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onLoginButton:" destination="VrM-tN-wEa" eventType="touchUpInside" id="ibj-NX-jis"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="TwitterLogoBlue" translatesAutoresizingMaskIntoConstraints="NO" id="zt0-ye-VSB">
+                                <rect key="frame" x="87.5" y="198" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="8kw-gz-uGa"/>
+                                    <constraint firstAttribute="width" constant="200" id="pqP-NN-jvP"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Wk-R4-GeO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BZ9-NO-XiG" firstAttribute="centerY" secondItem="HT9-S2-MZf" secondAttribute="centerY" id="RVX-lb-Zs3"/>
+                            <constraint firstItem="BZ9-NO-XiG" firstAttribute="top" secondItem="zt0-ye-VSB" secondAttribute="bottom" constant="8" id="2kR-M0-vCM"/>
+                            <constraint firstItem="zt0-ye-VSB" firstAttribute="centerX" secondItem="HT9-S2-MZf" secondAttribute="centerX" id="DSO-rF-k53"/>
+                            <constraint firstItem="BZ9-NO-XiG" firstAttribute="centerY" secondItem="HT9-S2-MZf" secondAttribute="centerY" constant="100" id="RVX-lb-Zs3"/>
                             <constraint firstItem="BZ9-NO-XiG" firstAttribute="centerX" secondItem="HT9-S2-MZf" secondAttribute="centerX" id="aFj-bN-FnG"/>
                         </constraints>
                     </view>
@@ -142,6 +154,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TwitterLogoBlue" width="200" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
