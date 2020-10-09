@@ -9,15 +9,34 @@
 import UIKit
 
 class HomeTableViewController: UITableViewController {
+    
+    var tweetArray = [NSDictionary]()
+    var numberOfTweets: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadTweets()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func loadTweets() {
+        let homeTimelineUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        let params = ["count": 10]
+        // call Twitter API
+        TwitterAPICaller.client?.getDictionariesRequest(url: homeTimelineUrl, parameters: params, success: { (tweets: [NSDictionary]) in
+            self.tweetArray.removeAll()
+            for tweet in tweets {
+                self.tweetArray.append(tweet)
+            }
+            self.tableView.reloadData()
+        }, failure: { (Error) in
+            print("Could not get tweets")
+        })
     }
 
     // MARK: - Table view data source
@@ -37,13 +56,15 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 20
+        return tweetArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! tweetCell
-        cell.userNameLabel.text = "John Doe"
-        cell.tweetContent.text = "Hello world!"
+        let tweet = tweetArray[indexPath.row]
+        let user = tweet["user"] as! NSDictionary
+        cell.userNameLabel.text = user["name"] as! String
+        cell.tweetContent.text = tweet["text"] as! String
         cell.profileImageView.image = #imageLiteral(resourceName: "profile-Icon")
         return cell
     }
