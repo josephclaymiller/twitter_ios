@@ -1,4 +1,4 @@
-# Project 3 - Twitter iOS
+# Twitter iOS - Part 1
 
 Twitter iOS is a basic twitter app to read your tweets.
 
