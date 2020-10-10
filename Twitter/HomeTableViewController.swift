@@ -14,6 +14,8 @@ class HomeTableViewController: UITableViewController {
     var numberOfTweets: Int!
     
     let myRefreshControl = UIRefreshControl()
+    
+    let homeTimelineUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,13 @@ class HomeTableViewController: UITableViewController {
     }
     
     @objc func loadTweets() {
-        let homeTimelineUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        let params = ["count": 20]
-        // call Twitter API
+        numberOfTweets = 20
+        callTwitterAPI()
+    }
+    
+    // call Twitter API
+    func callTwitterAPI() {
+        let params = ["count": numberOfTweets]
         TwitterAPICaller.client?.getDictionariesRequest(url: homeTimelineUrl, parameters: params, success: { (tweets: [NSDictionary]) in
             self.tweetArray.removeAll()
             for tweet in tweets {
@@ -43,6 +49,12 @@ class HomeTableViewController: UITableViewController {
         }, failure: { (Error) in
             print("Could not get tweets")
         })
+    }
+    
+    func loadMoreTweets() {
+        // load more tweets, 20 at a time
+        numberOfTweets += 20
+        callTwitterAPI()
     }
 
     // MARK: - Table view data source
@@ -65,6 +77,7 @@ class HomeTableViewController: UITableViewController {
         return tweetArray.count
     }
     
+    // Configure the tweet cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! tweetCell
         let tweet = tweetArray[indexPath.row]
@@ -81,16 +94,12 @@ class HomeTableViewController: UITableViewController {
         }
         return cell
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if (indexPath.row + 1 == tweetArray.count) {
+            loadMoreTweets()
+        }
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
