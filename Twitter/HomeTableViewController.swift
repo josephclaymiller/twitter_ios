@@ -19,7 +19,6 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweets()
         
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
@@ -31,6 +30,11 @@ class HomeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweets()
+    }
+    
     @objc func loadTweets() {
         numberOfTweets = 20
         callTwitterAPI()
@@ -38,7 +42,7 @@ class HomeTableViewController: UITableViewController {
     
     // call Twitter API
     func callTwitterAPI() {
-        let params = ["count": numberOfTweets]
+        let params:[String: Int] = ["count": numberOfTweets]
         TwitterAPICaller.client?.getDictionariesRequest(url: homeTimelineUrl, parameters: params, success: { (tweets: [NSDictionary]) in
             self.tweetArray.removeAll()
             for tweet in tweets {
