@@ -87,8 +87,8 @@ class HomeTableViewController: UITableViewController {
         let tweet = tweetArray[indexPath.row]
         let user = tweet["user"] as! NSDictionary
         // Tweet text
-        cell.userNameLabel.text = user["name"] as! String
-        cell.tweetContent.text = tweet["text"] as! String
+        cell.userNameLabel.text = (user["name"] as! String)
+        cell.tweetContent.text = (tweet["text"] as! String)
         // Tweet image
         cell.profileImageView.image = #imageLiteral(resourceName: "profile-Icon")
         let imageUrl = URL(string: (user["profile_image_url_https"] as? String)!)
@@ -96,6 +96,8 @@ class HomeTableViewController: UITableViewController {
         if let imageData = data {
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        cell.setFavorite(tweet["favorited"] as! Bool)
+        cell.tweetId = tweet["id"] as! Int
         return cell
     }
     

@@ -104,6 +104,9 @@
                                                 <constraint firstAttribute="width" constant="30" id="eG3-Ul-LOc"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="favor-icon"/>
+                                            <connections>
+                                                <action selector="favoriteTweet:" destination="mTb-Yx-563" eventType="touchUpInside" id="kbC-KD-pqV"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27d-5o-y72" userLabel="ReTweetButton">
                                             <rect key="frame" x="279" y="99" width="30" height="30"/>
@@ -112,6 +115,9 @@
                                                 <constraint firstAttribute="height" constant="30" id="OHs-db-GnH"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="retweet-icon"/>
+                                            <connections>
+                                                <action selector="retweet:" destination="mTb-Yx-563" eventType="touchUpInside" id="ZFt-CH-UUM"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
