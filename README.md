@@ -25,6 +25,10 @@ Here's a walkthrough of implemented user stories:
 
 <img src='twitter_part2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+### Notes
+The Twitter consumerKey and consumerSecret are in a file called <code>Constants.swift</code> that is ignored by Git.
+To download and run the code you must first add these 2 constants to the Xcode project.
+
 ## Twitter iOS - Part 1
 
 Twitter iOS is a basic twitter app to read your tweets.
