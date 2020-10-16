@@ -97,7 +97,10 @@ class HomeTableViewController: UITableViewController {
             cell.profileImageView.image = UIImage(data: imageData)
         }
         cell.setFavorite(tweet["favorited"] as! Bool)
+        cell.setRetweeted(tweet["retweeted"] as! Bool)
+   
         cell.tweetId = tweet["id"] as! Int
+        
         return cell
     }
     
