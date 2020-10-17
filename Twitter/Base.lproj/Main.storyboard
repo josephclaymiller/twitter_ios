@@ -188,12 +188,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="280" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDy-5x-vAv" userLabel="remainingCharactersLabel">
+                                <rect key="frame" x="334" y="182" width="31" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nI7-o4-5x5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="LDy-5x-vAv" firstAttribute="top" secondItem="sq1-Tb-oTO" secondAttribute="bottom" constant="10" id="GhM-Zh-UpV"/>
                             <constraint firstItem="sq1-Tb-oTO" firstAttribute="top" secondItem="nI7-o4-5x5" secondAttribute="top" id="Vr6-8d-qx7"/>
                             <constraint firstItem="sq1-Tb-oTO" firstAttribute="trailing" secondItem="nI7-o4-5x5" secondAttribute="trailing" id="fjI-rU-3nX"/>
+                            <constraint firstItem="LDy-5x-vAv" firstAttribute="trailing" secondItem="nI7-o4-5x5" secondAttribute="trailing" constant="-10" id="kGB-om-Pxa"/>
                             <constraint firstItem="sq1-Tb-oTO" firstAttribute="leading" secondItem="nI7-o4-5x5" secondAttribute="leading" id="tzr-Sw-mxf"/>
                         </constraints>
                     </view>
@@ -212,6 +220,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="remainingCharactersLabel" destination="LDy-5x-vAv" id="urC-Dm-q7N"/>
                         <outlet property="tweetTextView" destination="sq1-Tb-oTO" id="oNr-nJ-18G"/>
                     </connections>
                 </viewController>
